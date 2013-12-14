@@ -144,6 +144,9 @@ public class Game {
 			display.update();
 		}
 		
+		int target = 300;
+		int finalPosition = arrow.getY();
+		
 		return score;
 	}
 	
