@@ -45,4 +45,12 @@ public class Arrow {
 		GL11.glEnd();
 		GL11.glDisable(GL11.GL_TEXTURE_2D); 
 	}
+	
+	public void increaseHeight() {
+		y = y - 4;
+	}
+	
+	public void decreaseHeight() {
+		y = y + 2;
+	}
 }

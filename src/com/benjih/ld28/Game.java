@@ -1,31 +1,42 @@
 package com.benjih.ld28;
 
-import com.benjih.ld28.menu.MainMenu;
-import com.benjih.ld28.menu.MenuChoice;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.Display;
 
 public class Game {
 	
-	public static void main (String args[]) throws Exception {
-		
-		GameDisplay display = new GameDisplay();
-		display.init();
-		
-//		new DeveloperSplash(display).run();
+	GameDisplay display;
+	
+	public Game (GameDisplay display) {
+		this.display = display;
+	}
+	
+	public void run () {
+		Sprite background = new Sprite(0, 0, "res/background.png");
+		Sprite bow = new Sprite(0, 100, "res/bow.png");
+		Arrow arrow = new Arrow();
 		
 		while(true) {
-			MenuChoice playerChoice = new MainMenu(display).run();
 			
-			if (playerChoice == MenuChoice.PLAY) {
-				new PlayGame(display).run();
-			} else if (playerChoice == MenuChoice.OPTIONS ) {
-				//new Options().run();
-				display.end();
+			display.blit();
+			
+			background.render();
+			bow.render();
+			arrow.render();
+			
+			if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
+				arrow.increaseHeight();
 			} else {
+				arrow.decreaseHeight();
+			}
+			
+			if (Display.isCloseRequested()) {
 				display.end();
 			}
 			
+			display.update();
 		}
-			
+		
 	}
 	
 }

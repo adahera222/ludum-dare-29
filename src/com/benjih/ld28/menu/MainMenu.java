@@ -60,19 +60,19 @@ public class MainMenu {
 			
 			while (Keyboard.next()) {
 			    if (Keyboard.getEventKeyState()) {
-			        if (KeyboardUtils.isUp()) {
+			        if (KeyboardUtils.isEventUp()) {
 						selection--;
 						if (selection == -1 ) {
 							selection = 2;
 						}
 			        }
-			        if (KeyboardUtils.isDown()) {
+			        if (KeyboardUtils.isEventDown()) {
 						selection++;
 						if (selection == 3 ) {
 							selection = 0;
 						}
 			        }
-			        if (KeyboardUtils.isAction()) {
+			        if (KeyboardUtils.isEventAction()) {
 			        	return choices.get(selection);
 			        }
 			    }
