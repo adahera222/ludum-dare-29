@@ -1,7 +1,5 @@
 package com.benjih.ld28;
 
-import org.lwjgl.opengl.Display;
-
 import com.benjih.ld28.menu.MainMenu;
 import com.benjih.ld28.menu.MenuChoice;
 
@@ -22,7 +20,7 @@ public class Game {
 			} else if (playerChoice == MenuChoice.OPTIONS ) {
 				//new Options().run();	
 			}
-			
+			display.end();
 		}
 			
 	}
