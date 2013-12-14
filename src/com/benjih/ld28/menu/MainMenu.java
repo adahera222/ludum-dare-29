@@ -25,6 +25,8 @@ public class MainMenu {
 		
 		while(true) {
 			
+			display.blit();
+			
 			if (Display.isCloseRequested()) {
 				display.end();
 			}
@@ -49,8 +51,8 @@ public class MainMenu {
 			    }
 			}
 			
-			Display.update();
-			Display.sync(60);
+			display.update();
+			
 		}
 		
 	}

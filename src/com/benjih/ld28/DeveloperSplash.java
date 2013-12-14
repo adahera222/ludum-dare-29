@@ -23,7 +23,7 @@ public class DeveloperSplash {
 		Texture splash = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/splash.png"));
 		
 		while (isRunning) {
-			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+			display.blit();
 			
 			Color.white.bind();
 			splash.bind();

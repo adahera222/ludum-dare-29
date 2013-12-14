@@ -36,6 +36,15 @@ public class GameDisplay {
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	}
 	
+	public void blit () {
+		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+	}
+	
+	public void update () {
+		Display.update();
+		Display.sync(60);
+	}
+	
 	public void end () {
 		Display.destroy();
 		System.exit(0);
