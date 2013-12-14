@@ -20,13 +20,9 @@ public class Game {
 		
 		boolean fire = true;
 		
-		display.generateDelta();
-		
 		long start = display.getTime();
 		
 		while (fire) {
-			int delta = display.generateDelta();
-			
 			display.blit();
 			
 			background.render();
@@ -91,9 +87,9 @@ public class Game {
 			arrow.render();
 			
 			if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-				arrow.increaseHeight();
+				arrow.increaseHeight(delta);
 			} else {
-				arrow.decreaseHeight();
+				arrow.decreaseHeight(delta);
 			}
 			
 			display.closeIfRequested();
