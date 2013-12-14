@@ -13,6 +13,7 @@ public class Game {
 	
 	GameDisplay display;
 	private int total = 1600;
+	float speed = 0.5f;
 	
 	public Game (GameDisplay display) {
 		this.display = display;
@@ -71,7 +72,7 @@ public class Game {
 		long shotFired = display.getTime();
 		long timeInFlight = 0;
 		
-		while (timeInFlight < 30 && play) {
+		while (timeInFlight < 20 && play) {
 			int delta = display.generateDelta();
 			
 			display.blit();
@@ -86,9 +87,9 @@ public class Game {
 			}
 			
 			if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-				arrow.increaseHeight(delta);
+				arrow.increaseHeight(speed, delta);
 			} else {
-				arrow.decreaseHeight(delta);
+				arrow.decreaseHeight(speed, delta);
 			}
 			
 			display.closeIfRequested();
@@ -113,6 +114,7 @@ public class Game {
 			display.update();
 			
 			timeInFlight = (display.getTime() - shotFired) / 1000;
+			speed = speed + 0.001f;
 		}
 		score = (int) (score + (timeInFlight * 60));
 		
@@ -132,7 +134,7 @@ public class Game {
 			background2.render();
 			arrow.render();
 			
-			arrow.setX(arrow.getX() + (int) Math.floor(1 * delta));
+			arrow.setX(arrow.getX() + (int) Math.floor(speed * delta));
 			if (arrow.getX() >= 700) {
 				play = false;
 				score = score + 1000;
@@ -146,14 +148,14 @@ public class Game {
 	}
 	
 	private void scrollAndHideSprite (GLObject sprite, int delta) {
-		sprite.setX(sprite.getX() - (int) Math.floor(1 * delta));
+		sprite.setX(sprite.getX() - (int) Math.floor(speed * delta));
 		if (sprite.getX() <= -200) {
 			sprite.hide();
 		}
 	}
 
 	private void scrollAndRepeatSprite (GLObject sprite, int delta) {
-		sprite.setX(sprite.getX() - (int) Math.floor(1 * delta));
+		sprite.setX(sprite.getX() - (int) Math.floor(speed * delta));
 		if (sprite.getX() <= -800) {
 			sprite.setX(800 + (sprite.getX() + 800));
 			total = total + 800;
@@ -164,6 +166,24 @@ public class Game {
 		ArrayList<Coin> list = new ArrayList<Coin>();
 		Random random = new Random();
 		
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
 		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
 		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
 		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));

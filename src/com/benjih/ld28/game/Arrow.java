@@ -49,15 +49,15 @@ public class Arrow {
 		GL11.glDisable(GL11.GL_TEXTURE_2D); 
 	}
 	
-	public void increaseHeight (int delta) {
+	public void increaseHeight (float speed, int delta) {
 		if (y > 0) {
-			y = y - (int) Math.floor(0.3 * delta);
+			y = y - (int) Math.floor((speed / 2) * delta);
 		}
 	}
 	
-	public void decreaseHeight (int delta) {
+	public void decreaseHeight (float speed, int delta) {
 		if (y < 600) {
-			y = y + (int) Math.floor(0.3 * delta);
+			y = y + (int) Math.floor((speed / 2) * delta);
 		}
 	}
 	
