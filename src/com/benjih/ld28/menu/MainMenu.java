@@ -12,6 +12,7 @@ import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
 import com.benjih.ld28.GameDisplay;
+import com.benjih.ld28.Sprite;
 
 public class MainMenu {
 	
@@ -23,10 +24,11 @@ public class MainMenu {
 
 	public MenuChoice run () throws IOException {
 		
-		Texture logo = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/logo.png"));
-		Texture menuPlay = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/menu_play.png"));
-		Texture menuOptions = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/menu_options.png"));
-		Texture menuExit = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/menu_exit.png"));
+		Sprite background = new Sprite(0, 0, "res/background.png");
+		Sprite logo = new Sprite(200, 30, "res/logo.png");
+		Sprite menuPlay = new Sprite(150, 170, "res/menu_play.png");
+		Sprite menuOptions = new Sprite(150, 170, "res/menu_options.png");
+		Sprite menuExit = new Sprite(150, 170, "res/menu_exit.png");
 		
 		ArrayList<MenuChoice> choices = new ArrayList<MenuChoice>();
 		
@@ -40,15 +42,15 @@ public class MainMenu {
 			
 			display.blit();
 			
-			drawBackground();
-			drawLogo(logo);
+			background.render();
+			logo.render();
 			
 			if (selection == 0) {
-				drawMenu(menuPlay);
+				menuPlay.render();
 			} else if (selection == 1) {
-				drawMenu(menuOptions);
+				menuOptions.render();
 			} else {
-				drawMenu(menuExit);
+				menuExit.render();
 			}
 			
 			if (Display.isCloseRequested()) {
@@ -79,72 +81,6 @@ public class MainMenu {
 			
 		}
 		
-	}
-
-	private void drawBackground () {
-		new Color(109, 217, 0).bind();
-		
-		GL11.glBegin(GL11.GL_QUADS);
-		
-		GL11.glTexCoord2f(0, 0);
-		GL11.glVertex2f(0, 0);
-		
-		GL11.glTexCoord2f(1, 0);
-		GL11.glVertex2f(800, 0);
-		
-		GL11.glTexCoord2f(1, 1);
-		GL11.glVertex2f(800, 600);
-		
-		GL11.glTexCoord2f(0, 1);
-		GL11.glVertex2f(0, 600);
-		
-		GL11.glEnd();
-	}
-	
-	private void drawLogo (Texture logo) {
-		new Color(255, 255, 255).bind();
-		
-		GL11.glEnable(GL11.GL_TEXTURE_2D); 
-		logo.bind();
-		GL11.glBegin(GL11.GL_QUADS);
-		
-		GL11.glTexCoord2f(0,0);
-		GL11.glVertex2f(200, 30);
-		
-		GL11.glTexCoord2f(1, 0);
-		GL11.glVertex2f(200 + logo.getTextureWidth(), 30);
-		
-		GL11.glTexCoord2f(1, 1);
-		GL11.glVertex2f(200 + logo.getTextureWidth(), 30 + logo.getTextureHeight());
-		
-		GL11.glTexCoord2f(0, 1);
-		GL11.glVertex2f(200, 30 + logo.getTextureHeight());
-		
-		GL11.glEnd();
-		GL11.glDisable(GL11.GL_TEXTURE_2D); 
-	}
-	
-	private void drawMenu(Texture menu) {
-		new Color(255, 255, 255).bind();
-		
-		GL11.glEnable(GL11.GL_TEXTURE_2D); 
-		menu.bind();
-		GL11.glBegin(GL11.GL_QUADS);
-		
-		GL11.glTexCoord2f(0,0);
-		GL11.glVertex2f(150, 170);
-		
-		GL11.glTexCoord2f(1, 0);
-		GL11.glVertex2f(150 + menu.getTextureWidth(), 170);
-		
-		GL11.glTexCoord2f(1, 1);
-		GL11.glVertex2f(150 + menu.getTextureWidth(), 170 + menu.getTextureHeight());
-		
-		GL11.glTexCoord2f(0, 1);
-		GL11.glVertex2f(150, 170 + menu.getTextureHeight());
-		
-		GL11.glEnd();
-		GL11.glDisable(GL11.GL_TEXTURE_2D); 
 	}
 
 }
