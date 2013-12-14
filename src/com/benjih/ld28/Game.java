@@ -1,5 +1,7 @@
 package com.benjih.ld28;
 
+import java.util.ArrayList;
+
 import org.lwjgl.input.Keyboard;
 
 public class Game {
@@ -20,7 +22,8 @@ public class Game {
 		beforeFiringLoop(background, fireMessage, bow, arrow);
 		afterFiringLoop(background, background2, bow, arrow);
 		
-		flightLoop(background, background2, arrow);
+		int score = flightLoop(background, background2, arrow);
+		System.out.println(score);
 		
 	}
 
@@ -87,7 +90,7 @@ public class Game {
 	private int flightLoop(Sprite background, Sprite background2, Arrow arrow) {
 		display.generateDelta();
 		
-		Coin theCoin = new Coin(900, 70);
+		ArrayList<Coin> coins = createCoins();
 		
 		boolean play = true;
 		int score = 0;
@@ -102,7 +105,9 @@ public class Game {
 			background2.render();
 			arrow.render();
 			
-			theCoin.render();
+			for(Coin coin : coins) {
+				coin.render();
+			}
 			
 			if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 				arrow.increaseHeight(delta);
@@ -116,13 +121,19 @@ public class Game {
 			
 			scrollSprite(background, delta);
 			scrollSprite(background2, delta);
-			scrollSprite(theCoin, delta);
+			
+			ArrayList<Coin> copyOfCoins = new ArrayList<Coin>(coins);
+			for(Coin coin : copyOfCoins) {
+				if (arrow.collidesWith(coin)) {
+					score = score + coin.getScore();
+					coin.hide();
+					coins.remove(coin);
+				}
+				
+				scrollSprite(coin, delta);
+			}
 			
 			display.update();
-			
-			if (arrow.collidesWith(theCoin)) {
-				score = score + theCoin.getScore();
-			}
 			
 			timeInFlight = (display.getTime() - shotFired) / 1000;
 		}
@@ -130,11 +141,20 @@ public class Game {
 		return score;
 	}
 	
-	private void scrollSprite(GLObject sprite, int delta) {
+	private void scrollSprite (GLObject sprite, int delta) {
 		sprite.setX(sprite.getX() - (int) Math.floor(1 * delta));
 		if (sprite.getX() <= -800) {
 			sprite.setX(800 + (sprite.getX() + 800));
 		}
+	}
+	
+	private ArrayList<Coin> createCoins () {
+		ArrayList<Coin> list = new ArrayList<Coin>();
+		list.add(new Coin(900, 50));
+		list.add(new Coin(900, 100));
+		list.add(new Coin(900, 150));
+		
+		return list;
 	}
 	
 }
