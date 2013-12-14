@@ -15,6 +15,7 @@ public class Arrow {
 	public Arrow () {
 		this.x = 0;
 		this.y = 274;
+		
 		try {
 			this.resource = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/arrow.png"));
 		} catch (IOException e) {
@@ -46,19 +47,32 @@ public class Arrow {
 		GL11.glDisable(GL11.GL_TEXTURE_2D); 
 	}
 	
-	public void increaseHeight() {
+	public void increaseHeight () {
 		if (y > 0) {
 			y = y - 4;
 		}
 	}
 	
-	public void decreaseHeight() {
+	public void decreaseHeight () {
 		if (y < 600) {
 			y = y + 2;
 		}
 	}
 	
-	public boolean hasHitGround() {
+	public boolean hasHitGround () {
 		return y >= 600;
 	}
-}
+	
+	public int getX () {
+		return x;
+	}
+	
+	public void setX(int x) {
+		this.x = x;
+	}
+	
+	public int getY () {
+		return y;
+	}
+	
+ }

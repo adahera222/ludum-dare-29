@@ -45,6 +45,8 @@ public class Game {
 			display.update();
 		}
 		
+		arrow.setX(20);
+		
 		boolean play = true;
 		
 		while (play) {
