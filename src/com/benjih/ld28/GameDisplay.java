@@ -1,11 +1,14 @@
 package com.benjih.ld28;
 
 import org.lwjgl.LWJGLException;
+import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
 public class GameDisplay {
+	
+	private long lastFrame;
 	
 	public GameDisplay () {
 		try {
@@ -30,6 +33,7 @@ public class GameDisplay {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, 800, 600, 0, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+		generateDelta();
 	}
 	
 	public void blit () {
@@ -47,6 +51,18 @@ public class GameDisplay {
 	public void end () {
 		Display.destroy();
 		System.exit(0);
+	}
+	
+	public long getTime () {
+	    return (Sys.getTime() * 1000) / Sys.getTimerResolution();
+	}
+	
+	public int generateDelta() {
+	    long time = getTime();
+	    int delta = (int) (time - lastFrame);
+	    lastFrame = time;
+	    	
+	    return delta;
 	}
 
 }

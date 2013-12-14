@@ -16,26 +16,26 @@ public class DeveloperSplash {
 	}
 	
 	public void run () throws Exception {
-		boolean isRunning = true;
-		
-		int i = 0;
+		boolean running = true;
 		
 		Sprite splash = new Sprite(0, 0, "res/splash.png");
+		long start = display.getTime();
 		
-		while (isRunning) {
+		while (running) {
 			display.blit();
 			
 			splash.render();
 			
+			System.out.println(display.getTime());
 			Display.update();
 			Display.sync(60);
 			
-			i++;
-			if(i >= 90) {
-				isRunning = false;
+			if (display.getTime() >= start + 3000) {
+				running = false;
 			}
 			
 		}
+		
 	}
-
+	
 }
