@@ -13,6 +13,7 @@ public class Game {
 	
 	public void run () {
 		Sprite background = new Sprite(0, 0, "res/background.png");
+		Sprite background2 = new Sprite(800, 0, "res/background.png");
 		Sprite bow = new Sprite(0, 100, "res/bow.png");
 		Arrow arrow = new Arrow();
 		
@@ -43,6 +44,7 @@ public class Game {
 			display.blit();
 			
 			background.render();
+			background2.render();
 			arrow.render();
 			
 			if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
@@ -56,6 +58,15 @@ public class Game {
 			}
 			
 			play = !arrow.hasHitGround();
+			
+			background.setX(background.getX() - 4);
+			if (background.getX() == -800) {
+				background.setX(800);
+			}
+			background2.setX(background2.getX() - 4);
+			if (background2.getX() == -800) {
+				background2.setX(800);
+			}
 			
 			display.update();
 		}

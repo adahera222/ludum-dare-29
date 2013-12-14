@@ -59,7 +59,6 @@ public class Arrow {
 	}
 	
 	public boolean hasHitGround() {
-		System.out.println(y);
 		return y >= 600;
 	}
 }
