@@ -20,21 +20,26 @@ public class Game {
 		
 		boolean fire = true;
 		
+		long start = display.getTime();
+		
 		while (fire) {
 			display.blit();
 			
 			background.render();
 			bow.render();
 			arrow.render();
-			fireMessage.render();
 			
-			while(Keyboard.next()) {
-				if (Keyboard.getEventKeyState()) {
-			        if (KeyboardUtils.isEventAction()) {
-			        	fire = false;
-			        }
-				}
+			display.closeIfRequested();
+			
+			if (display.getTime()  >= start + 3000) {
+				fireMessage.render();
 				
+				display.closeIfRequested();
+				
+				if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+					fire = false;
+				}
+						
 			}
 			
 			display.update();
@@ -55,9 +60,7 @@ public class Game {
 				arrow.decreaseHeight();
 			}
 			
-			if (Display.isCloseRequested()) {
-				display.end();
-			}
+			display.closeIfRequested();
 			
 			play = !arrow.hasHitGround();
 			

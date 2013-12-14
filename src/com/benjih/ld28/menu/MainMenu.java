@@ -1,15 +1,8 @@
 package com.benjih.ld28.menu;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureLoader;
-import org.newdawn.slick.util.ResourceLoader;
 
 import com.benjih.ld28.GameDisplay;
 import com.benjih.ld28.KeyboardUtils;
@@ -23,7 +16,8 @@ public class MainMenu {
 		this.display = display;
 	}
 
-	public MenuChoice run () throws IOException {
+	public MenuChoice run () {
+		KeyboardUtils.resetKeyboard();
 		
 		Sprite background = new Sprite(0, 0, "res/background.png");
 		Sprite logo = new Sprite(200, 30, "res/logo.png");
@@ -54,9 +48,7 @@ public class MainMenu {
 				menuExit.render();
 			}
 			
-			if (Display.isCloseRequested()) {
-				display.end();
-			}
+			display.closeIfRequested();
 			
 			while (Keyboard.next()) {
 			    if (Keyboard.getEventKeyState()) {

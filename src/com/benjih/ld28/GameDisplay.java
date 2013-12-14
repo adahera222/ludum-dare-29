@@ -23,7 +23,6 @@ public class GameDisplay {
 	}
 	
 	public void init () {
-
 		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);       
 		 
 		GL11.glViewport(0,0,800,600);
@@ -63,6 +62,12 @@ public class GameDisplay {
 	    lastFrame = time;
 	    	
 	    return delta;
+	}
+
+	public void closeIfRequested() {
+		if (Display.isCloseRequested()) {
+			end();
+		}		
 	}
 
 }
