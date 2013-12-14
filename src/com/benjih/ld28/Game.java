@@ -16,7 +16,9 @@ public class Game {
 		Sprite bow = new Sprite(0, 100, "res/bow.png");
 		Arrow arrow = new Arrow();
 		
-		while(true) {
+		boolean fire = true;
+		
+		while(fire) {
 			
 			display.blit();
 			
@@ -24,18 +26,26 @@ public class Game {
 			bow.render();
 			arrow.render();
 			
-			if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-				arrow.increaseHeight();
-			} else {
-				arrow.decreaseHeight();
-			}
-			
-			if (Display.isCloseRequested()) {
-				display.end();
+			while(Keyboard.next()) {
+				if (Keyboard.getEventKeyState()) {
+			        if (KeyboardUtils.isEventAction()) {
+			        	fire = false;
+			        }
+				}
 			}
 			
 			display.update();
 		}
+		
+//			if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
+//				arrow.increaseHeight();
+//			} else {
+//				arrow.decreaseHeight();
+//			}
+//			
+//			if (Display.isCloseRequested()) {
+//				display.end();
+//			}
 		
 	}
 	

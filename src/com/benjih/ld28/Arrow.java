@@ -47,10 +47,19 @@ public class Arrow {
 	}
 	
 	public void increaseHeight() {
-		y = y - 4;
+		if (y > 0) {
+			y = y - 4;
+		}
 	}
 	
 	public void decreaseHeight() {
-		y = y + 2;
+		if (y < 600) {
+			y = y + 2;
+		}
+	}
+	
+	public boolean hasHitGround() {
+		System.out.println(y);
+		return y >= 600;
 	}
 }
