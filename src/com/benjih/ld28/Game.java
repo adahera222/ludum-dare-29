@@ -110,6 +110,8 @@ public class Game {
 			
 			timeInFlight = (display.getTime() - shotFired) / 1000;
 		}
+		score = (int) (score + (timeInFlight * 60));
+		
 		System.out.println(total);
 		return score;
 	}
