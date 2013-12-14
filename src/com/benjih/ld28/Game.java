@@ -18,8 +18,7 @@ public class Game {
 		
 		boolean fire = true;
 		
-		while(fire) {
-			
+		while (fire) {
 			display.blit();
 			
 			background.render();
@@ -32,20 +31,35 @@ public class Game {
 			        	fire = false;
 			        }
 				}
+				
 			}
 			
 			display.update();
 		}
 		
-//			if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-//				arrow.increaseHeight();
-//			} else {
-//				arrow.decreaseHeight();
-//			}
-//			
-//			if (Display.isCloseRequested()) {
-//				display.end();
-//			}
+		boolean play = true;
+		
+		while (play) {
+			display.blit();
+			
+			background.render();
+			arrow.render();
+			
+			if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
+				arrow.increaseHeight();
+			} else {
+				arrow.decreaseHeight();
+			}
+			
+			if (Display.isCloseRequested()) {
+				display.end();
+			}
+			
+			play = !arrow.hasHitGround();
+			
+			display.update();
+		}
+		
 		
 	}
 	
