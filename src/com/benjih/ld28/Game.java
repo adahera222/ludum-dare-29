@@ -17,10 +17,14 @@ public class Game {
 			
 			if (playerChoice == MenuChoice.PLAY) {
 				//new Level().run();
+				display.end();
 			} else if (playerChoice == MenuChoice.OPTIONS ) {
-				//new Options().run();	
+				//new Options().run();
+				display.end();
+			} else {
+				display.end();
 			}
-			display.end();
+			
 		}
 			
 	}

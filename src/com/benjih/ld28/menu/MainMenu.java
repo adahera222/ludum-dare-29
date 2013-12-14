@@ -20,6 +20,7 @@ public class MainMenu {
 		
 		choices.add(MenuChoice.PLAY);
 		choices.add(MenuChoice.OPTIONS);
+		choices.add(MenuChoice.EXIT);
 		
 		int selection = 0;
 		
@@ -41,7 +42,7 @@ public class MainMenu {
 			        }
 			        if (Keyboard.getEventKey() == Keyboard.KEY_D || Keyboard.getEventKey() == Keyboard.KEY_DOWN) {
 						selection++;
-						if (selection == 2 ) {
+						if (selection == 3 ) {
 							selection = 0;
 						}
 			        }
