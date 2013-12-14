@@ -1,5 +1,7 @@
 package com.benjih.ld28;
 
+import com.benjih.ld28.components.GameDisplay;
+import com.benjih.ld28.game.Game;
 import com.benjih.ld28.menu.MainMenu;
 import com.benjih.ld28.menu.MenuChoice;
 

@@ -1,5 +1,8 @@
 package com.benjih.ld28;
 
+import com.benjih.ld28.components.GameDisplay;
+import com.benjih.ld28.components.Sprite;
+
 public class DeveloperSplash {
 	
 	GameDisplay display;

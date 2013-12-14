@@ -1,4 +1,4 @@
-package com.benjih.ld28;
+package com.benjih.ld28.components;
 
 import org.lwjgl.input.Keyboard;
 

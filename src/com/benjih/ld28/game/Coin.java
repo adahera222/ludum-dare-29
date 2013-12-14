@@ -1,4 +1,4 @@
-package com.benjih.ld28;
+package com.benjih.ld28.game;
 
 import java.io.IOException;
 
@@ -8,7 +8,10 @@ import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
-public class Coin implements GLObject {
+import com.benjih.ld28.components.CollidableObject;
+import com.benjih.ld28.components.GLObject;
+
+public class Coin implements GLObject, CollidableObject {
 	private int x, y;
 	private Texture resource;
 	private boolean hide = false;

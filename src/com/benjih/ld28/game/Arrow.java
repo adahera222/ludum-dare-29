@@ -1,4 +1,4 @@
-package com.benjih.ld28;
+package com.benjih.ld28.game;
 
 import java.io.IOException;
 
@@ -7,6 +7,8 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
+
+import com.benjih.ld28.components.CollidableObject;
 
 public class Arrow {
 	private int x, y;
@@ -75,11 +77,11 @@ public class Arrow {
 		return y;
 	}
 
-	public boolean collidesWith(Coin coin) {
-		if (y >= coin.getY() &&
-				y <= coin.getY() + coin.getHeight() &&
-				x + resource.getImageWidth() >= coin.getX() &&
-				x + resource.getImageWidth() <= coin.getX() + coin.getWidth()) {
+	public boolean collidesWith(CollidableObject object) {
+		if (y >= object.getY() &&
+				y <= object.getY() + object.getHeight() &&
+				x + resource.getImageWidth() >= object.getX() &&
+				x + resource.getImageWidth() <= object.getX() + object.getWidth()) {
 			return true;
 		}
 		return false;

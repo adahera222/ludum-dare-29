@@ -1,9 +1,13 @@
-package com.benjih.ld28;
+package com.benjih.ld28.game;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import org.lwjgl.input.Keyboard;
+
+import com.benjih.ld28.components.GLObject;
+import com.benjih.ld28.components.GameDisplay;
+import com.benjih.ld28.components.Sprite;
 
 public class Game {
 	

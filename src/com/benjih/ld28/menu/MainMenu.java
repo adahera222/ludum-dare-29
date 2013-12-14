@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
 
-import com.benjih.ld28.GameDisplay;
-import com.benjih.ld28.KeyboardUtils;
-import com.benjih.ld28.Sprite;
+import com.benjih.ld28.components.GameDisplay;
+import com.benjih.ld28.components.KeyboardUtils;
+import com.benjih.ld28.components.Sprite;
 
 public class MainMenu {
 	
