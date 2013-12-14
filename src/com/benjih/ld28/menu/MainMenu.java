@@ -12,6 +12,7 @@ import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
 import com.benjih.ld28.GameDisplay;
+import com.benjih.ld28.KeyboardUtils;
 import com.benjih.ld28.Sprite;
 
 public class MainMenu {
@@ -59,19 +60,19 @@ public class MainMenu {
 			
 			while (Keyboard.next()) {
 			    if (Keyboard.getEventKeyState()) {
-			        if (Keyboard.getEventKey() == Keyboard.KEY_W || Keyboard.getEventKey() == Keyboard.KEY_UP) {
+			        if (KeyboardUtils.isUp()) {
 						selection--;
 						if (selection == -1 ) {
 							selection = 2;
 						}
 			        }
-			        if (Keyboard.getEventKey() == Keyboard.KEY_D || Keyboard.getEventKey() == Keyboard.KEY_DOWN) {
+			        if (KeyboardUtils.isDown()) {
 						selection++;
 						if (selection == 3 ) {
 							selection = 0;
 						}
 			        }
-			        if (Keyboard.getEventKey() == Keyboard.KEY_SPACE || Keyboard.getEventKey() == Keyboard.KEY_RETURN) {
+			        if (KeyboardUtils.isAction()) {
 			        	return choices.get(selection);
 			        }
 			    }
