@@ -6,4 +6,5 @@ public interface GLObject {
 	public void setX (int x);
 	public int getY ();
 	public void setY (int y);
+	public void hide();
 }

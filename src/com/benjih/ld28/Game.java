@@ -72,8 +72,8 @@ public class Game {
 			bow.render();
 			arrow.render();
 			
-			scrollSprite(background, delta);
-			scrollSprite(background2, delta);
+			scrollAndRepeatSprite(background, delta);
+			scrollAndRepeatSprite(background2, delta);
 			
 			int move = (int) Math.floor(0.5 * delta);
 			bow.setX(bow.getX() - move);
@@ -119,8 +119,8 @@ public class Game {
 			
 			play = !arrow.hasHitGround();
 			
-			scrollSprite(background, delta);
-			scrollSprite(background2, delta);
+			scrollAndRepeatSprite(background, delta);
+			scrollAndRepeatSprite(background2, delta);
 			
 			ArrayList<Coin> copyOfCoins = new ArrayList<Coin>(coins);
 			for(Coin coin : copyOfCoins) {
@@ -130,7 +130,7 @@ public class Game {
 					coins.remove(coin);
 				}
 				
-				scrollSprite(coin, delta);
+				scrollAndHideSprite(coin, delta);
 			}
 			
 			display.update();
@@ -141,7 +141,14 @@ public class Game {
 		return score;
 	}
 	
-	private void scrollSprite (GLObject sprite, int delta) {
+	private void scrollAndHideSprite (GLObject sprite, int delta) {
+		sprite.setX(sprite.getX() - (int) Math.floor(1 * delta));
+		if (sprite.getX() <= -200) {
+			sprite.hide();
+		}
+	}
+
+	private void scrollAndRepeatSprite (GLObject sprite, int delta) {
 		sprite.setX(sprite.getX() - (int) Math.floor(1 * delta));
 		if (sprite.getX() <= -800) {
 			sprite.setX(800 + (sprite.getX() + 800));
