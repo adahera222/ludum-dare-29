@@ -23,7 +23,7 @@ public class Game {
 		
 		beforeFiringLoop(background, fireMessage, bow, arrow);
 		int score = flightLoop(background, background2, bow, arrow);
-		
+		score = finalLoop(background, background2, arrow, score);
 		System.out.println(score);
 		
 	}
@@ -111,6 +111,31 @@ public class Game {
 			timeInFlight = (display.getTime() - shotFired) / 1000;
 		}
 		System.out.println(total);
+		return score;
+	}
+	
+	private int finalLoop (GLObject background, GLObject background2, Arrow arrow, int score) {
+		boolean play = true;
+		display.generateDelta();
+		
+		while (play) {
+			display.blit();
+			int delta = display.generateDelta();
+			
+			background.render();
+			background2.render();
+			arrow.render();
+			
+			arrow.setX(arrow.getX() + (int) Math.floor(1 * delta));
+			if (arrow.getX() >= 700) {
+				play = false;
+				score = score + 1000;
+			}
+			display.closeIfRequested();
+			
+			display.update();
+		}
+		
 		return score;
 	}
 	
