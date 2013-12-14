@@ -1,12 +1,14 @@
 package com.benjih.ld28;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.lwjgl.input.Keyboard;
 
 public class Game {
 	
 	GameDisplay display;
+	private int total = 1600;
 	
 	public Game (GameDisplay display) {
 		this.display = display;
@@ -20,9 +22,8 @@ public class Game {
 		Arrow arrow = new Arrow();
 		
 		beforeFiringLoop(background, fireMessage, bow, arrow);
-		afterFiringLoop(background, background2, bow, arrow);
+		int score = flightLoop(background, background2, bow, arrow);
 		
-		int score = flightLoop(background, background2, arrow);
 		System.out.println(score);
 		
 	}
@@ -56,38 +57,7 @@ public class Game {
 		}
 	}
 	
-	private void afterFiringLoop(Sprite background, Sprite background2,
-			Sprite bow, Arrow arrow) {
-		display.generateDelta();
-		
-		boolean bowGone = false;
-		
-		while (!bowGone) {
-			int delta = display.generateDelta();
-			
-			display.blit();
-			
-			background.render();
-			background2.render();
-			bow.render();
-			arrow.render();
-			
-			scrollAndRepeatSprite(background, delta);
-			scrollAndRepeatSprite(background2, delta);
-			
-			int move = (int) Math.floor(0.5 * delta);
-			bow.setX(bow.getX() - move);
-			
-			if (bow.getX() <= -200) {
-				bowGone = true;
-			}
-			
-			display.update();
-			
-		}
-	}
-	
-	private int flightLoop(Sprite background, Sprite background2, Arrow arrow) {
+	private int flightLoop(Sprite background, Sprite background2, Sprite bow, Arrow arrow) {
 		display.generateDelta();
 		
 		ArrayList<Coin> coins = createCoins();
@@ -96,6 +66,7 @@ public class Game {
 		int score = 0;
 		long shotFired = display.getTime();
 		long timeInFlight = 0;
+		
 		while (timeInFlight < 30 && play) {
 			int delta = display.generateDelta();
 			
@@ -103,6 +74,7 @@ public class Game {
 			
 			background.render();
 			background2.render();
+			bow.render();
 			arrow.render();
 			
 			for(Coin coin : coins) {
@@ -121,6 +93,7 @@ public class Game {
 			
 			scrollAndRepeatSprite(background, delta);
 			scrollAndRepeatSprite(background2, delta);
+			scrollAndHideSprite(bow, delta);
 			
 			ArrayList<Coin> copyOfCoins = new ArrayList<Coin>(coins);
 			for(Coin coin : copyOfCoins) {
@@ -137,7 +110,7 @@ public class Game {
 			
 			timeInFlight = (display.getTime() - shotFired) / 1000;
 		}
-		
+		System.out.println(total);
 		return score;
 	}
 	
@@ -152,14 +125,20 @@ public class Game {
 		sprite.setX(sprite.getX() - (int) Math.floor(1 * delta));
 		if (sprite.getX() <= -800) {
 			sprite.setX(800 + (sprite.getX() + 800));
+			total = total + 800;
 		}
 	}
 	
 	private ArrayList<Coin> createCoins () {
 		ArrayList<Coin> list = new ArrayList<Coin>();
-		list.add(new Coin(900, 50));
-		list.add(new Coin(900, 100));
-		list.add(new Coin(900, 150));
+		Random random = new Random();
+		
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
 		
 		return list;
 	}
