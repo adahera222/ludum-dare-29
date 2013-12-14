@@ -9,9 +9,19 @@ public class Game {
 		GameDisplay display = new GameDisplay();
 		display.init();
 		
-		new DeveloperSplash().run();
+		new DeveloperSplash(display).run();
+		
+		while(true) {
+			String playerChoice = new MainMenu(display).run();
 			
-		Display.destroy();
+			if (playerChoice == "play" ) {
+				//new Level().run();
+			} else if (playerChoice == "options" ) {
+				//new Options().run();	
+			}
+			
+		}
+			
 	}
 	
 }

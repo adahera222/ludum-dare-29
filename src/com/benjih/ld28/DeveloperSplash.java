@@ -9,6 +9,12 @@ import org.newdawn.slick.util.ResourceLoader;
 
 public class DeveloperSplash {
 	
+	GameDisplay display;
+	
+	public DeveloperSplash (GameDisplay display) {
+		this.display = display;
+	}
+	
 	public void run () throws Exception {
 		boolean isRunning = true;
 		

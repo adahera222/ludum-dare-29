@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL11;
 
 public class GameDisplay {
 	
-	public GameDisplay() {
+	public GameDisplay () {
 		try {
 			Display.setDisplayMode(new DisplayMode(800, 600));
 			Display.setFullscreen(false);
@@ -19,7 +19,7 @@ public class GameDisplay {
 		}
 	}
 	
-	public void init() {
+	public void init () {
 		GL11.glEnable(GL11.GL_TEXTURE_2D);               
 
 		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);       
@@ -34,6 +34,11 @@ public class GameDisplay {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, 800, 600, 0, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+	}
+	
+	public void end () {
+		Display.destroy();
+		System.exit(0);
 	}
 
 }
