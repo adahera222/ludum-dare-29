@@ -20,7 +20,6 @@ public class GameDisplay {
 	}
 	
 	public void init () {
-		GL11.glEnable(GL11.GL_TEXTURE_2D);               
 
 		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);       
 		 

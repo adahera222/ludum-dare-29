@@ -26,18 +26,26 @@ public class DeveloperSplash {
 			display.blit();
 			
 			Color.white.bind();
-			splash.bind();
 			
+			GL11.glEnable(GL11.GL_TEXTURE_2D); 
+			splash.bind();
 			GL11.glBegin(GL11.GL_QUADS);
-			GL11.glTexCoord2f(0,0);
-			GL11.glVertex2f(0,0);
-			GL11.glTexCoord2f(1,0);
+			
+			GL11.glTexCoord2f(0, 0);
+			GL11.glVertex2f(0, 0);
+			
+			GL11.glTexCoord2f(1, 0);
 			GL11.glVertex2f(splash.getTextureWidth(), 0);
-			GL11.glTexCoord2f(1,1);
+			
+			GL11.glTexCoord2f(1, 1);
 			GL11.glVertex2f(splash.getTextureWidth(), splash.getTextureHeight());
-			GL11.glTexCoord2f(0,1);
+			
+			GL11.glTexCoord2f(0, 1);
 			GL11.glVertex2f(0, splash.getTextureHeight());
+			
 			GL11.glEnd();
+			
+			GL11.glDisable(GL11.GL_TEXTURE_2D); 
 			
 			Display.update();
 			Display.sync(60);
