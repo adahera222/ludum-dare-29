@@ -10,14 +10,13 @@ public class Game {
 		GameDisplay display = new GameDisplay();
 		display.init();
 		
-		new DeveloperSplash(display).run();
+//		new DeveloperSplash(display).run();
 		
 		while(true) {
 			MenuChoice playerChoice = new MainMenu(display).run();
 			
 			if (playerChoice == MenuChoice.PLAY) {
-				//new Level().run();
-				display.end();
+				new PlayGame(display).run();
 			} else if (playerChoice == MenuChoice.OPTIONS ) {
 				//new Options().run();
 				display.end();
