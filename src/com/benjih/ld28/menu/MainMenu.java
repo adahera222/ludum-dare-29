@@ -24,12 +24,9 @@ public class MainMenu {
 	public MenuChoice run () throws IOException {
 		
 		Texture logo = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/logo.png"));
-		Texture playSelected = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/play-selected.png"));
-		Texture playUnselected = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/play-unselected.png"));
-		Texture optionsSelected = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/options-selected.png"));
-		Texture optionsUnselected = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/options-unselected.png"));
-		Texture exitSelected = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/exit-selected.png"));
-		Texture exitUnselected = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/exit-unselected.png"));
+		Texture menuPlay = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/menu_play.png"));
+		Texture menuOptions = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/menu_options.png"));
+		Texture menuExit = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/menu_exit.png"));
 		
 		ArrayList<MenuChoice> choices = new ArrayList<MenuChoice>();
 		
@@ -47,11 +44,11 @@ public class MainMenu {
 			drawLogo(logo);
 			
 			if (selection == 0) {
-				drawMenu(playSelected, optionsUnselected, exitUnselected);
+				drawMenu(menuPlay);
 			} else if (selection == 1) {
-				drawMenu(playUnselected, optionsSelected, exitUnselected);
+				drawMenu(menuOptions);
 			} else {
-				drawMenu(playUnselected, optionsUnselected, exitSelected);
+				drawMenu(menuExit);
 			}
 			
 			if (Display.isCloseRequested()) {
@@ -112,79 +109,39 @@ public class MainMenu {
 		GL11.glBegin(GL11.GL_QUADS);
 		
 		GL11.glTexCoord2f(0,0);
-		GL11.glVertex2f(200, 50);
+		GL11.glVertex2f(200, 30);
 		
 		GL11.glTexCoord2f(1, 0);
-		GL11.glVertex2f(200 + logo.getTextureWidth(), 50);
+		GL11.glVertex2f(200 + logo.getTextureWidth(), 30);
 		
 		GL11.glTexCoord2f(1, 1);
-		GL11.glVertex2f(200 + logo.getTextureWidth(), 50 + logo.getTextureHeight());
+		GL11.glVertex2f(200 + logo.getTextureWidth(), 30 + logo.getTextureHeight());
 		
 		GL11.glTexCoord2f(0, 1);
-		GL11.glVertex2f(200, 50 + logo.getTextureHeight());
+		GL11.glVertex2f(200, 30 + logo.getTextureHeight());
 		
 		GL11.glEnd();
 		GL11.glDisable(GL11.GL_TEXTURE_2D); 
 	}
 	
-	private void drawMenu(Texture play, Texture options, Texture exit) {
+	private void drawMenu(Texture menu) {
 		new Color(255, 255, 255).bind();
 		
 		GL11.glEnable(GL11.GL_TEXTURE_2D); 
-		play.bind();
+		menu.bind();
 		GL11.glBegin(GL11.GL_QUADS);
 		
 		GL11.glTexCoord2f(0,0);
-		GL11.glVertex2f(200, 200);
+		GL11.glVertex2f(150, 170);
 		
 		GL11.glTexCoord2f(1, 0);
-		GL11.glVertex2f(200 + play.getTextureWidth(), 200);
+		GL11.glVertex2f(150 + menu.getTextureWidth(), 170);
 		
 		GL11.glTexCoord2f(1, 1);
-		GL11.glVertex2f(200 + play.getTextureWidth(), 200 + play.getTextureHeight());
+		GL11.glVertex2f(150 + menu.getTextureWidth(), 170 + menu.getTextureHeight());
 		
 		GL11.glTexCoord2f(0, 1);
-		GL11.glVertex2f(200, 200 + play.getTextureHeight());
-		
-		GL11.glEnd();
-		GL11.glDisable(GL11.GL_TEXTURE_2D); 
-		
-		
-		GL11.glEnable(GL11.GL_TEXTURE_2D); 
-		options.bind();
-		GL11.glBegin(GL11.GL_QUADS);
-		
-		GL11.glTexCoord2f(0,0);
-		GL11.glVertex2f(200, 300);
-		
-		GL11.glTexCoord2f(1, 0);
-		GL11.glVertex2f(200 + options.getTextureWidth(), 300);
-		
-		GL11.glTexCoord2f(1, 1);
-		GL11.glVertex2f(200 + options.getTextureWidth(), 300 + options.getTextureHeight());
-		
-		GL11.glTexCoord2f(0, 1);
-		GL11.glVertex2f(200, 300 + play.getTextureHeight());
-		
-		GL11.glEnd();
-		GL11.glDisable(GL11.GL_TEXTURE_2D); 
-		
-		
-		GL11.glEnable(GL11.GL_TEXTURE_2D); 
-		exit.bind();
-		GL11.glBegin(GL11.GL_QUADS);
-		
-		GL11.glTexCoord2f(0,0);
-		GL11.glVertex2f(200, 400);
-		
-		GL11.glTexCoord2f(1, 0);
-		GL11.glVertex2f(200 + exit.getTextureWidth(), 400);
-		
-		GL11.glTexCoord2f(1, 1);
-		GL11.glVertex2f(200 + exit.getTextureWidth(), 400 + options.getTextureHeight());
-		
-		GL11.glTexCoord2f(0, 1);
-		GL11.glVertex2f(200, 400 + exit.getTextureHeight());
+		GL11.glVertex2f(150, 170 + menu.getTextureHeight());
 		
 		GL11.glEnd();
 		GL11.glDisable(GL11.GL_TEXTURE_2D); 
