@@ -74,5 +74,16 @@ public class Arrow {
 	public int getY () {
 		return y;
 	}
+
+	public boolean collidesWith(Coin theCoin) {
+		if (y >= theCoin.getY() &&
+				y <= theCoin.getY() + theCoin.getHeight() &&
+				x + resource.getImageWidth() >= theCoin.getX() &&
+				x + resource.getImageWidth() <= theCoin.getX() + theCoin.getWidth()) {
+			theCoin.hide();
+			return true;
+		}
+		return false;
+	}
 	
  }
