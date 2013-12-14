@@ -2,6 +2,9 @@ package com.benjih.ld28;
 
 import org.lwjgl.opengl.Display;
 
+import com.benjih.ld28.menu.MainMenu;
+import com.benjih.ld28.menu.MenuChoice;
+
 public class Game {
 	
 	public static void main (String args[]) throws Exception {
@@ -12,11 +15,11 @@ public class Game {
 		new DeveloperSplash(display).run();
 		
 		while(true) {
-			String playerChoice = new MainMenu(display).run();
+			MenuChoice playerChoice = new MainMenu(display).run();
 			
-			if (playerChoice == "play" ) {
+			if (playerChoice == MenuChoice.PLAY) {
 				//new Level().run();
-			} else if (playerChoice == "options" ) {
+			} else if (playerChoice == MenuChoice.OPTIONS ) {
 				//new Options().run();	
 			}
 			

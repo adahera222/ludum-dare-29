@@ -1,4 +1,6 @@
-package com.benjih.ld28;
+package com.benjih.ld28.menu;
+
+import com.benjih.ld28.GameDisplay;
 
 public class MainMenu {
 	
@@ -8,7 +10,7 @@ public class MainMenu {
 		this.display = display;
 	}
 
-	public String run () {
+	public MenuChoice run () {
 		display.end();
 		return null;
 	}
