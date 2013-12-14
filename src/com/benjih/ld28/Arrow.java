@@ -13,7 +13,7 @@ public class Arrow {
 	private Texture resource;
 	
 	public Arrow () {
-		this.x = 0;
+		this.x = 20;
 		this.y = 274;
 		
 		try {

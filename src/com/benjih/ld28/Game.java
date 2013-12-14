@@ -20,9 +20,13 @@ public class Game {
 		
 		boolean fire = true;
 		
+		display.generateDelta();
+		
 		long start = display.getTime();
 		
 		while (fire) {
+			int delta = display.generateDelta();
+			
 			display.blit();
 			
 			background.render();
@@ -45,11 +49,41 @@ public class Game {
 			display.update();
 		}
 		
-		arrow.setX(20);
+		display.generateDelta();
+		
+		boolean bowGone = false;
+		
+		while (!bowGone) {
+			int delta = display.generateDelta();
+			
+			display.blit();
+			
+			background.render();
+			background2.render();
+			bow.render();
+			arrow.render();
+			
+			scrollSprite(background, delta);
+			scrollSprite(background2, delta);
+			
+			int move = (int) Math.floor(0.5 * delta);
+			bow.setX(bow.getX() - move);
+			
+			if (bow.getX() <= -200) {
+				bowGone = true;
+			}
+			
+			display.update();
+			
+		}
+		
+		display.generateDelta();
 		
 		boolean play = true;
 		
 		while (play) {
+			int delta = display.generateDelta();
+			
 			display.blit();
 			
 			background.render();
@@ -66,19 +100,19 @@ public class Game {
 			
 			play = !arrow.hasHitGround();
 			
-			background.setX(background.getX() - 4);
-			if (background.getX() == -800) {
-				background.setX(800);
-			}
-			background2.setX(background2.getX() - 4);
-			if (background2.getX() == -800) {
-				background2.setX(800);
-			}
+			scrollSprite(background, delta);
+			scrollSprite(background2, delta);
 			
 			display.update();
 		}
 		
-		
+	}
+	
+	private void scrollSprite(Sprite sprite, int delta) {
+		sprite.setX(sprite.getX() - (int) Math.floor(1 * delta));
+		if (sprite.getX() <= -800) {
+			sprite.setX(800 + (sprite.getX() + 800));
+		}
 	}
 	
 }
