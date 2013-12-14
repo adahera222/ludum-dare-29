@@ -1,7 +1,6 @@
 package com.benjih.ld28;
 
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.Display;
 
 public class Game {
 	
@@ -18,6 +17,14 @@ public class Game {
 		Sprite bow = new Sprite(0, 100, "res/bow.png");
 		Arrow arrow = new Arrow();
 		
+		beforeFiringLoop(background, fireMessage, bow, arrow);
+		afterFiringLoop(background, background2, bow, arrow);
+		
+		flightLoop(background, background2, arrow);
+		
+	}
+
+	private void beforeFiringLoop(Sprite background, Sprite fireMessage, Sprite bow, Arrow arrow) {
 		boolean fire = true;
 		
 		long start = display.getTime();
@@ -39,12 +46,15 @@ public class Game {
 				if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
 					fire = false;
 				}
-						
+				
 			}
 			
 			display.update();
 		}
-		
+	}
+	
+	private void afterFiringLoop(Sprite background, Sprite background2,
+			Sprite bow, Arrow arrow) {
 		display.generateDelta();
 		
 		boolean bowGone = false;
@@ -72,12 +82,16 @@ public class Game {
 			display.update();
 			
 		}
-		
+	}
+	
+	private int flightLoop(Sprite background, Sprite background2, Arrow arrow) {
 		display.generateDelta();
 		
 		boolean play = true;
-		
-		while (play) {
+		int score = 0;
+		long shotFired = display.getTime();
+		long timeInFlight = 0;
+		while (timeInFlight < 30 && play) {
 			int delta = display.generateDelta();
 			
 			display.blit();
@@ -100,8 +114,11 @@ public class Game {
 			scrollSprite(background2, delta);
 			
 			display.update();
+			
+			timeInFlight = (display.getTime() - shotFired) / 1000;
 		}
 		
+		return score;
 	}
 	
 	private void scrollSprite(Sprite sprite, int delta) {
