@@ -17,9 +17,6 @@ public class Launcher {
 			
 			if (playerChoice == MenuChoice.PLAY) {
 				new Game(display).run();
-			} else if (playerChoice == MenuChoice.OPTIONS ) {
-				//new Options().run();
-				display.end();
 			} else {
 				display.end();
 			}

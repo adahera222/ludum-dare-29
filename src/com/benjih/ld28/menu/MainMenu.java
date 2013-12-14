@@ -22,13 +22,11 @@ public class MainMenu {
 		Sprite background = new Sprite(0, 0, "res/background.png");
 		Sprite logo = new Sprite(200, 30, "res/logo.png");
 		Sprite menuPlay = new Sprite(150, 170, "res/menu_play.png");
-		Sprite menuOptions = new Sprite(150, 170, "res/menu_options.png");
 		Sprite menuExit = new Sprite(150, 170, "res/menu_exit.png");
 		
 		ArrayList<MenuChoice> choices = new ArrayList<MenuChoice>();
 		
 		choices.add(MenuChoice.PLAY);
-		choices.add(MenuChoice.OPTIONS);
 		choices.add(MenuChoice.EXIT);
 		
 		int selection = 0;
@@ -42,8 +40,6 @@ public class MainMenu {
 			
 			if (selection == 0) {
 				menuPlay.render();
-			} else if (selection == 1) {
-				menuOptions.render();
 			} else {
 				menuExit.render();
 			}
@@ -55,12 +51,12 @@ public class MainMenu {
 			        if (KeyboardUtils.isEventUp()) {
 						selection--;
 						if (selection == -1 ) {
-							selection = 2;
+							selection = 1;
 						}
 			        }
 			        if (KeyboardUtils.isEventDown()) {
 						selection++;
-						if (selection == 3 ) {
+						if (selection == 2 ) {
 							selection = 0;
 						}
 			        }
