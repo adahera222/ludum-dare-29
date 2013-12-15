@@ -3,7 +3,6 @@ package com.benjih.ld28.game;
 import java.awt.Font;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Random;
 
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
@@ -259,32 +258,48 @@ public class Game {
 	
 	private ArrayList<Coin> createCoins () {
 		ArrayList<Coin> list = new ArrayList<Coin>();
-		Random random = new Random();
 		
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(1000, 100));
+		list.add(new Coin(1000, 300));
+		list.add(new Coin(1000, 500));
+		
+		list.add(new Coin(2000, 300));
+		list.add(new Coin(2200, 300));
+		list.add(new Coin(2400, 300));
+		list.add(new Coin(2600, 400));
+		
+		list.add(new Coin(3600, 200));
+		list.add(new Coin(3700, 100));
+		list.add(new Coin(3700, 300));
+		list.add(new Coin(3800, 200));
+		
+		list.add(new Coin(4700, 200));
+		list.add(new Coin(5700, 250));
+		
+		list.add(new Coin(7000, 300));
+		list.add(new Coin(7200, 300));
+		list.add(new Coin(7400, 300));
+		list.add(new Coin(7600, 300));
+		
+		list.add(new Coin(9000, 200));
+		list.add(new Coin(9200, 200));
+		list.add(new Coin(9400, 200));
+		list.add(new Coin(9600, 200));
+		
+		list.add(new Coin(11000, 400));
+		list.add(new Coin(11200, 400));
+		list.add(new Coin(11400, 400));
+		list.add(new Coin(11600, 400));
+		
+		list.add(new Coin(13000, 200));
+		list.add(new Coin(13200, 300));
+		list.add(new Coin(13400, 200));
+		list.add(new Coin(13600, 300));
+		list.add(new Coin(13800, 300));
+		list.add(new Coin(14000, 300));
+		
+		
+	
 		
 		return list;
 	}
