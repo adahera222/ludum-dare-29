@@ -29,7 +29,7 @@ public class Game {
 	public void run () {
 		Sprite background = new Sprite(0, 0, "res/background.png");
 		Sprite background2 = new Sprite(800, 0, "res/background.png");
-		Sprite target = new Sprite(14220, 200, "/res/target.png");
+		Sprite target = new Sprite(14220, 200, "res/target.png");
 		Sprite fireMessage = new Sprite(0, 0, "res/fire.png");
 		Sprite bow = new Sprite(0, 100, "res/bow.png");
 		Arrow arrow = new Arrow();

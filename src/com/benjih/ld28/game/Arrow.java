@@ -9,7 +9,6 @@ import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
 import com.benjih.ld28.components.CollidableObject;
-import com.benjih.ld28.components.Sprite;
 
 public class Arrow implements CollidableObject {
 	private int x, y;
@@ -76,10 +75,6 @@ public class Arrow implements CollidableObject {
 	
 	public int getY () {
 		return y;
-	}
-
-	public void setY(int Y) {
-		this.y = y;
 	}
 	
 	public boolean collidesWith(CollidableObject object) {
