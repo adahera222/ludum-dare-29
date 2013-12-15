@@ -24,11 +24,11 @@ public class Cinematic {
 			
 			display.closeIfRequested();
 			
-			if (display.getTime() >= start + 9000) {
+			if (display.getTime() >= start + 15000) {
 				running = false;
-			} else if (display.getTime() >= start + 6000) {
+			} else if (display.getTime() >= start + 10000) {
 				cinematic = new Sprite(0, 0, "res/opening_3.png");
-			} else if (display.getTime() >= start + 3000) {
+			} else if (display.getTime() >= start + 5000) {
 				cinematic = new Sprite(0, 0, "res/opening_2.png");
 			}
 			
