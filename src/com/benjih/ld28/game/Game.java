@@ -72,7 +72,7 @@ public class Game {
 		long shotFired = display.getTime();
 		long timeInFlight = 0;
 		
-		while (timeInFlight < 20 && play) {
+		while (timeInFlight < 1 && play) {
 			int delta = display.generateDelta();
 			
 			display.blit();
@@ -146,6 +146,22 @@ public class Game {
 		
 		int target = 300;
 		int finalPosition = arrow.getY();
+		
+		System.out.println("Trying to calculate bonus score");
+		int differance = Math.abs(finalPosition - target);
+		
+		if (differance < 50 ) {
+			score = score + 1000;
+			System.out.println(1000);
+		} else if (differance < 100) {
+			score = score + 500;
+			System.out.println(500);
+			
+		} else if (differance < 200) {
+			score = score + 250;
+			System.out.println(250);
+			
+		}
 		
 		return score;
 	}
