@@ -18,6 +18,7 @@ public class Launcher {
 			MenuChoice playerChoice = new MainMenu(display).run();
 			
 			if (playerChoice == MenuChoice.PLAY) {
+				new Cinematic(display).run();
 				new Game(display).run();
 			} else {
 				display.end();
