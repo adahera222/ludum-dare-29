@@ -22,13 +22,14 @@ public class Game {
 	public void run () {
 		Sprite background = new Sprite(0, 0, "res/background.png");
 		Sprite background2 = new Sprite(800, 0, "res/background.png");
+		Sprite target = new Sprite(14220, 200, "/res/target.png");
 		Sprite fireMessage = new Sprite(0, 0, "res/fire.png");
 		Sprite bow = new Sprite(0, 100, "res/bow.png");
 		Arrow arrow = new Arrow();
 		
 		beforeFiringLoop(background, fireMessage, bow, arrow);
-		int score = flightLoop(background, background2, bow, arrow);
-		score = finalLoop(background, background2, arrow, score);
+		int score = flightLoop(background, background2, target, bow, arrow);
+		score = finalLoop(background, background2, target, arrow, score);
 		System.out.println(score);
 		
 	}
@@ -47,7 +48,7 @@ public class Game {
 			
 			display.closeIfRequested();
 			
-			if (display.getTime()  >= start + 3000) {
+			if (display.getTime()  >= start + 1) {
 				fireMessage.render();
 				
 				display.closeIfRequested();
@@ -62,7 +63,7 @@ public class Game {
 		}
 	}
 	
-	private int flightLoop(Sprite background, Sprite background2, Sprite bow, Arrow arrow) {
+	private int flightLoop(Sprite background, Sprite background2, Sprite target, Sprite bow, Arrow arrow) {
 		display.generateDelta();
 		
 		ArrayList<Coin> coins = createCoins();
@@ -72,13 +73,14 @@ public class Game {
 		long shotFired = display.getTime();
 		long timeInFlight = 0;
 		
-		while (timeInFlight < 1 && play) {
+		while (timeInFlight < 15 && play) {
 			int delta = display.generateDelta();
 			
 			display.blit();
 			
 			background.render();
 			background2.render();
+			target.render();
 			bow.render();
 			arrow.render();
 			
@@ -89,7 +91,7 @@ public class Game {
 			if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 				arrow.increaseHeight(speed, delta);
 			} else {
-				arrow.decreaseHeight(speed, delta);
+//				arrow.decreaseHeight(speed, delta);
 			}
 			
 			display.closeIfRequested();
@@ -98,6 +100,7 @@ public class Game {
 			
 			scrollAndRepeatSprite(background, delta);
 			scrollAndRepeatSprite(background2, delta);
+			scrollAndHideSprite(target, delta);
 			scrollAndHideSprite(bow, delta);
 			
 			ArrayList<Coin> copyOfCoins = new ArrayList<Coin>(coins);
@@ -122,7 +125,7 @@ public class Game {
 		return score;
 	}
 	
-	private int finalLoop (GLObject background, GLObject background2, Arrow arrow, int score) {
+	private int finalLoop (GLObject background, GLObject background2, Sprite target, Arrow arrow, int score) {
 		boolean play = true;
 		display.generateDelta();
 		
@@ -132,6 +135,7 @@ public class Game {
 			
 			background.render();
 			background2.render();
+			target.render();
 			arrow.render();
 			
 			arrow.setX(arrow.getX() + (int) Math.floor(speed * delta));
@@ -144,24 +148,24 @@ public class Game {
 			display.update();
 		}
 		
-		int target = 300;
-		int finalPosition = arrow.getY();
-		
-		System.out.println("Trying to calculate bonus score");
-		int differance = Math.abs(finalPosition - target);
-		
-		if (differance < 50 ) {
-			score = score + 1000;
-			System.out.println(1000);
-		} else if (differance < 100) {
-			score = score + 500;
-			System.out.println(500);
-			
-		} else if (differance < 200) {
-			score = score + 250;
-			System.out.println(250);
-			
-		}
+//		int target = 300;
+//		int finalPosition = arrow.getY();
+//		
+//		System.out.println("Trying to calculate bonus score");
+//		int differance = Math.abs(finalPosition - target);
+//		
+//		if (differance < 50 ) {
+//			score = score + 1000;
+//			System.out.println(1000);
+//		} else if (differance < 100) {
+//			score = score + 500;
+//			System.out.println(500);
+//			
+//		} else if (differance < 200) {
+//			score = score + 250;
+//			System.out.println(250);
+//			
+//		}
 		
 		return score;
 	}
