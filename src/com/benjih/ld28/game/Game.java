@@ -30,7 +30,6 @@ public class Game {
 		beforeFiringLoop(background, fireMessage, bow, arrow);
 		int score = flightLoop(background, background2, target, bow, arrow);
 		score = finalLoop(background, background2, target, arrow, score);
-		System.out.println(score);
 		
 	}
 
@@ -91,7 +90,7 @@ public class Game {
 			if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 				arrow.increaseHeight(speed, delta);
 			} else {
-//				arrow.decreaseHeight(speed, delta);
+				arrow.decreaseHeight(speed, delta);
 			}
 			
 			display.closeIfRequested();
@@ -121,13 +120,14 @@ public class Game {
 		}
 		score = (int) (score + (timeInFlight * 60));
 		
-		System.out.println(total);
 		return score;
 	}
 	
 	private int finalLoop (GLObject background, GLObject background2, Sprite target, Arrow arrow, int score) {
 		boolean play = true;
 		display.generateDelta();
+		
+		long start = display.getTime();
 		
 		while (play) {
 			display.blit();
@@ -138,7 +138,20 @@ public class Game {
 			target.render();
 			arrow.render();
 			
-			arrow.setX(arrow.getX() + (int) Math.floor(speed * delta));
+			if (arrow.getX() + arrow.getWidth() < target.getX()) {
+				arrow.setX(arrow.getX() + (int) Math.floor(speed * delta));
+			} else {
+				if ((arrow.getY() + arrow.getY() + arrow.getHeight()) / 2 < target.getY() ||
+					(arrow.getY() + arrow.getY() + arrow.getHeight()) / 2 > target.getY() + 224) {
+					arrow.setX(arrow.getX() + (int) Math.floor(speed * delta));
+				} else {
+					arrow.setX(300);
+					if (display.getTime()  >= start + 2000) {
+						play = false;
+					}
+				}
+			}
+			
 			if (arrow.getX() >= 700) {
 				play = false;
 				score = score + 1000;

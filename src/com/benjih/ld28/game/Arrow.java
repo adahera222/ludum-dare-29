@@ -10,13 +10,14 @@ import org.newdawn.slick.util.ResourceLoader;
 
 import com.benjih.ld28.components.CollidableObject;
 
-public class Arrow {
+public class Arrow implements CollidableObject {
 	private int x, y;
 	private Texture resource;
 	
 	public Arrow () {
 		this.x = 20;
-		this.y = 274;
+//		this.y = 274;
+		this.y = 170;
 		
 		try {
 			this.resource = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/arrow.png"));
@@ -77,6 +78,10 @@ public class Arrow {
 		return y;
 	}
 
+	public void setY(int Y) {
+		this.y = y;
+	}
+	
 	public boolean collidesWith(CollidableObject object) {
 		if (y >= object.getY() &&
 				y <= object.getY() + object.getHeight() &&
@@ -86,5 +91,19 @@ public class Arrow {
 		}
 		return false;
 	}
+
+	@Override
+	public int getWidth() {
+		return resource.getImageWidth();
+	}
+
+	@Override
+	public int getHeight() {
+		return resource.getImageHeight();
+	}
 	
+	public int getArrowPointY() {
+		return getY() + (getHeight() / 2);
+	}
+
  }
