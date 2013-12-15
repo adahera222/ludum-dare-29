@@ -58,7 +58,7 @@ public class Game {
 			
 			display.closeIfRequested();
 			
-			if (display.getTime()  >= start + 1) {
+			if (display.getTime()  >= start + 1000) {
 				fireMessage.render();
 				
 				display.closeIfRequested();
