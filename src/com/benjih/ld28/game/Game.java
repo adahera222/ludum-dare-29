@@ -1,9 +1,14 @@
 package com.benjih.ld28.game;
 
+import java.awt.Font;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
 import org.lwjgl.input.Keyboard;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.TrueTypeFont;
+import org.newdawn.slick.util.ResourceLoader;
 
 import com.benjih.ld28.components.GLObject;
 import com.benjih.ld28.components.GameDisplay;
@@ -30,7 +35,7 @@ public class Game {
 		beforeFiringLoop(background, fireMessage, bow, arrow);
 		int score = flightLoop(background, background2, target, bow, arrow);
 		score = finalLoop(background, background2, target, arrow, score);
-		
+		highScore(background, background2, target, arrow, score);
 	}
 
 	private void beforeFiringLoop(Sprite background, Sprite fireMessage, Sprite bow, Arrow arrow) {
@@ -178,6 +183,37 @@ public class Game {
 		}
 		
 		return score;
+	}
+	
+	private void highScore (GLObject background, GLObject background2, Sprite target, Arrow arrow, int score) {
+		boolean play = true;
+		
+		Sprite scoreScreen = new Sprite(150, 170, "res/score.png");
+		
+		TrueTypeFont font2 = null;
+		try {
+			InputStream inputStream = ResourceLoader.getResourceAsStream("res/font.ttf");
+
+			Font awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+			awtFont2 = awtFont2.deriveFont(60f); // set font size
+			font2 = new TrueTypeFont(awtFont2, true);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		while (play) {
+			display.blit();
+			
+			background.render();
+			background2.render();
+			target.render();
+			arrow.render();
+			scoreScreen.render();
+			font2.drawString(400, 450, Integer.toString(score), new Color(108, 81, 38));
+			display.closeIfRequested();
+			
+			display.update();
+		}
 	}
 	
 	private void scrollAndHideSprite (GLObject sprite, int delta) {
