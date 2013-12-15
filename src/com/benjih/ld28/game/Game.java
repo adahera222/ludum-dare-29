@@ -125,6 +125,7 @@ public class Game {
 	
 	private int finalLoop (GLObject background, GLObject background2, Sprite target, Arrow arrow, int score) {
 		boolean play = true;
+		boolean control = true;
 		display.generateDelta();
 		
 		long start = display.getTime();
@@ -138,6 +139,14 @@ public class Game {
 			target.render();
 			arrow.render();
 			
+			if (control) {
+				if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
+					arrow.increaseHeight(speed / 4, delta);
+				} else {
+					arrow.decreaseHeight(speed / 4, delta);
+				}
+			}
+			
 			if (arrow.getX() + arrow.getWidth() < target.getX()) {
 				arrow.setX(arrow.getX() + (int) Math.floor(speed * delta));
 			} else {
@@ -145,6 +154,7 @@ public class Game {
 					(arrow.getY() + arrow.getY() + arrow.getHeight()) / 2 > target.getY() + 224) {
 					arrow.setX(arrow.getX() + (int) Math.floor(speed * delta));
 				} else {
+					control = false;
 					arrow.setX(300);
 					if (display.getTime()  >= start + 2000) {
 						play = false;
