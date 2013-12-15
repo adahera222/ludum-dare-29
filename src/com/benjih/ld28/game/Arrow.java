@@ -82,8 +82,8 @@ public class Arrow implements CollidableObject {
 	}
 	
 	public boolean collidesWith(CollidableObject object) {
-		if (y >= object.getY() &&
-				y <= object.getY() + object.getHeight() &&
+		if (getArrowPointY() >= object.getY() &&
+				getArrowPointY() <= object.getY() + object.getHeight() &&
 				x + resource.getImageWidth() >= object.getX() &&
 				x + resource.getImageWidth() <= object.getX() + object.getWidth()) {
 			return true;

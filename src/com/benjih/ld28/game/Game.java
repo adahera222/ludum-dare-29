@@ -90,7 +90,7 @@ public class Game {
 			if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 				arrow.increaseHeight(speed, delta);
 			} else {
-//				arrow.decreaseHeight(speed, delta);
+				arrow.decreaseHeight(speed, delta);
 			}
 			
 			display.closeIfRequested();
@@ -189,30 +189,30 @@ public class Game {
 		ArrayList<Coin> list = new ArrayList<Coin>();
 		Random random = new Random();
 		
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
-		list.add(new Coin(random.nextInt(28000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
+		list.add(new Coin(random.nextInt(14000), random.nextInt(400)));
 		
 		return list;
 	}
