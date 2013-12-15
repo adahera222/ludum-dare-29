@@ -8,6 +8,8 @@ import java.util.Random;
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.TrueTypeFont;
+import org.newdawn.slick.openal.Audio;
+import org.newdawn.slick.openal.AudioLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
 import com.benjih.ld28.components.GLObject;
@@ -77,6 +79,15 @@ public class Game {
 		long shotFired = display.getTime();
 		long timeInFlight = 0;
 		
+		Audio coinSfx = null;
+		try {
+			coinSfx = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/coin.wav"));
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		
+		
 		while (timeInFlight < 15 && play) {
 			int delta = display.generateDelta();
 			
@@ -110,6 +121,7 @@ public class Game {
 			ArrayList<Coin> copyOfCoins = new ArrayList<Coin>(coins);
 			for(Coin coin : copyOfCoins) {
 				if (arrow.collidesWith(coin)) {
+					coinSfx.playAsSoundEffect(1.0f, 1.0f, false);
 					score = score + coin.getScore();
 					coin.hide();
 					coins.remove(coin);

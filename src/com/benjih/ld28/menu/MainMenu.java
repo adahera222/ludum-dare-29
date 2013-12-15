@@ -23,7 +23,7 @@ public class MainMenu {
 		Sprite logo = new Sprite(200, 30, "res/logo.png");
 		Sprite menuPlay = new Sprite(150, 170, "res/menu_play.png");
 		Sprite menuExit = new Sprite(150, 170, "res/menu_exit.png");
-		
+	
 		ArrayList<MenuChoice> choices = new ArrayList<MenuChoice>();
 		
 		choices.add(MenuChoice.PLAY);
