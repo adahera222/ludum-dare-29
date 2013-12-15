@@ -107,7 +107,7 @@ public class Game {
 				coin.render();
 			}
 			
-			if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
+			if (Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_UP)) {
 				arrow.increaseHeight(speed, delta);
 			} else {
 				arrow.decreaseHeight(speed, delta);
@@ -161,7 +161,7 @@ public class Game {
 			arrow.render();
 			
 			if (control) {
-				if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
+				if (Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_UP)) {
 					arrow.increaseHeight(speed / 4, delta);
 				} else {
 					arrow.decreaseHeight(speed / 4, delta);

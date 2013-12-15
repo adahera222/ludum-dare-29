@@ -87,12 +87,10 @@ public class Arrow implements CollidableObject {
 		return false;
 	}
 
-	@Override
 	public int getWidth() {
 		return resource.getImageWidth();
 	}
 
-	@Override
 	public int getHeight() {
 		return resource.getImageHeight();
 	}
