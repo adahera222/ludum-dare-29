@@ -18,29 +18,33 @@ import com.benjih.ld28.components.Sprite;
 
 public class Game {
 	
-	GameDisplay display;
+	private GameDisplay display;
+	private Sprite background, background2,
+					target, fireMessage, 
+					bullseyeMessage, bow;
+	private Arrow arrow;
 	private int total = 1600;
 	float speed = 0.5f;
 	
 	public Game (GameDisplay display) {
 		this.display = display;
+		background = new Sprite(0, 0, "res/background.png");
+		background2 = new Sprite(800, 0, "res/background.png");
+		target = new Sprite(14220, 200, "res/target.png");
+		fireMessage = new Sprite(0, 0, "res/fire.png");
+		bullseyeMessage = new Sprite(0, 0, "res/bullseye.png");
+		bow = new Sprite(0, 100, "res/bow.png");
+		arrow = new Arrow();
 	}
 	
 	public void run () {
-		Sprite background = new Sprite(0, 0, "res/background.png");
-		Sprite background2 = new Sprite(800, 0, "res/background.png");
-		Sprite target = new Sprite(14220, 200, "res/target.png");
-		Sprite fireMessage = new Sprite(0, 0, "res/fire.png");
-		Sprite bow = new Sprite(0, 100, "res/bow.png");
-		Arrow arrow = new Arrow();
-		
-		beforeFiringLoop(background, fireMessage, bow, arrow);
-		int score = flightLoop(background, background2, target, bow, arrow);
-		score = finalLoop(background, background2, target, arrow, score);
-		highScore(background, background2, target, arrow, score);
+		beforeFiringLoop();
+		int score = flightLoop();
+		score = finalLoop(score);
+		highScore(score);
 	}
 
-	private void beforeFiringLoop(Sprite background, Sprite fireMessage, Sprite bow, Arrow arrow) {
+	private void beforeFiringLoop() {
 		boolean fire = true;
 		
 		long start = display.getTime();
@@ -69,7 +73,7 @@ public class Game {
 		}
 	}
 	
-	private int flightLoop(Sprite background, Sprite background2, Sprite target, Sprite bow, Arrow arrow) {
+	private int flightLoop() {
 		display.generateDelta();
 		
 		ArrayList<Coin> coins = createCoins();
@@ -140,7 +144,7 @@ public class Game {
 		return score;
 	}
 	
-	private int finalLoop (GLObject background, GLObject background2, Sprite target, Arrow arrow, int score) {
+	private int finalLoop (int score) {
 		boolean play = true;
 		boolean control = true;
 		display.generateDelta();
@@ -165,7 +169,7 @@ public class Game {
 			}
 			
 			if (arrow.getX() + arrow.getWidth() < target.getX()) {
-				arrow.setX(arrow.getX() + (int) Math.floor(speed * delta));
+				arrow.setX(arrow.getX() + (int) Math.floor(speed / 2 * delta));
 			} else {
 				if ((arrow.getY() + arrow.getY() + arrow.getHeight()) / 2 < target.getY() ||
 					(arrow.getY() + arrow.getY() + arrow.getHeight()) / 2 > target.getY() + 224) {
@@ -173,6 +177,10 @@ public class Game {
 				} else {
 					control = false;
 					arrow.setX(300);
+					if (arrow.getArrowPointY() > target.getY() + 74 &&
+							arrow.getArrowPointY() < target.getY() + 74 + 74) {
+						bullseyeMessage.render();
+					}
 					if (display.getTime()  >= start + 2000) {
 						play = false;
 						score = score + 5000;
@@ -186,6 +194,7 @@ public class Game {
 			}
 			display.closeIfRequested();
 			
+			
 			display.update();
 		}
 		
@@ -197,7 +206,7 @@ public class Game {
 		return score;
 	}
 	
-	private void highScore (GLObject background, GLObject background2, Sprite target, Arrow arrow, int score) {
+	private void highScore (int score) {
 		boolean play = true;
 		
 		Sprite scoreScreen = new Sprite(150, 170, "res/score.png");
