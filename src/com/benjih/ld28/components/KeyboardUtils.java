@@ -21,7 +21,7 @@ public class KeyboardUtils {
 	}
 	
 	public static boolean isEventDown () {
-		return Keyboard.getEventKey() == Keyboard.KEY_D || Keyboard.getEventKey() == Keyboard.KEY_DOWN;
+		return Keyboard.getEventKey() == Keyboard.KEY_S || Keyboard.getEventKey() == Keyboard.KEY_DOWN;
 	}
 	
 	public static boolean isEventAction () {
