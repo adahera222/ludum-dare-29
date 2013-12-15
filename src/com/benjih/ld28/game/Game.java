@@ -163,7 +163,7 @@ public class Game {
 					arrow.setX(300);
 					if (display.getTime()  >= start + 2000) {
 						play = false;
-						System.out.println("You hit the target!");
+						score = score + 5000;
 					}
 				}
 			}
@@ -179,7 +179,7 @@ public class Game {
 		
 		if (arrow.getArrowPointY() > target.getY() + 74 &&
 				arrow.getArrowPointY() < target.getY() + 74 + 74) {
-			System.out.println("That's a bullseye");
+			score = score + 10000;
 		}
 		
 		return score;
@@ -209,7 +209,12 @@ public class Game {
 			target.render();
 			arrow.render();
 			scoreScreen.render();
+			
 			font2.drawString(400, 450, Integer.toString(score), new Color(108, 81, 38));
+			
+			if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+				play = false;
+			}
 			display.closeIfRequested();
 			
 			display.update();

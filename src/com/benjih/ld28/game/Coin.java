@@ -79,7 +79,7 @@ public class Coin implements GLObject, CollidableObject {
 	}
 	
 	public int getScore() {
-		return 10;
+		return 500;
 	}
 	
 	public void hide() {
