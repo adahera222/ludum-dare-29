@@ -16,8 +16,7 @@ public class Arrow implements CollidableObject {
 	
 	public Arrow () {
 		this.x = 20;
-//		this.y = 274;
-		this.y = 170;
+		this.y = 274;
 		
 		try {
 			this.resource = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/arrow.png"));

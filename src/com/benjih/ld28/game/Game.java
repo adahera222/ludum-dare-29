@@ -90,7 +90,7 @@ public class Game {
 			if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 				arrow.increaseHeight(speed, delta);
 			} else {
-				arrow.decreaseHeight(speed, delta);
+//				arrow.decreaseHeight(speed, delta);
 			}
 			
 			display.closeIfRequested();
@@ -148,6 +148,7 @@ public class Game {
 					arrow.setX(300);
 					if (display.getTime()  >= start + 2000) {
 						play = false;
+						System.out.println("You hit the target!");
 					}
 				}
 			}
@@ -161,24 +162,10 @@ public class Game {
 			display.update();
 		}
 		
-//		int target = 300;
-//		int finalPosition = arrow.getY();
-//		
-//		System.out.println("Trying to calculate bonus score");
-//		int differance = Math.abs(finalPosition - target);
-//		
-//		if (differance < 50 ) {
-//			score = score + 1000;
-//			System.out.println(1000);
-//		} else if (differance < 100) {
-//			score = score + 500;
-//			System.out.println(500);
-//			
-//		} else if (differance < 200) {
-//			score = score + 250;
-//			System.out.println(250);
-//			
-//		}
+		if (arrow.getArrowPointY() > target.getY() + 74 &&
+				arrow.getArrowPointY() < target.getY() + 74 + 74) {
+			System.out.println("That's a bullseye");
+		}
 		
 		return score;
 	}
